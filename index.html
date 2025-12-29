@@ -14,16 +14,12 @@ body {
     overflow: hidden;
 }
 
-/* === Background Slideshow === */
+/* Slideshow */
 .slideshow {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: -1;
 }
-
 .slide {
     position: absolute;
     width: 100%;
@@ -33,110 +29,97 @@ body {
     opacity: 0;
     animation: fade 24s infinite;
 }
+.slide:nth-child(1){background-image:url('bg1.jpg')}
+.slide:nth-child(2){background-image:url('bg2.jpg');animation-delay:8s}
+.slide:nth-child(3){background-image:url('bg3.jpg');animation-delay:16s}
 
-.slide:nth-child(1) { background-image: url('bg1.jpg'); }
-.slide:nth-child(2) { background-image: url('bg2.jpg'); animation-delay: 6s; }
-.slide:nth-child(3) { background-image: url('bg3.jpg'); animation-delay: 12s; }
-.slide:nth-child(4) { background-image: url('bg4.jpg'); animation-delay: 18s; }
-
-@keyframes fade {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    30% { opacity: 1; }
-    40% { opacity: 0; }
-    100% { opacity: 0; }
+@keyframes fade{
+    0%{opacity:0}
+    10%{opacity:1}
+    30%{opacity:1}
+    40%{opacity:0}
+    100%{opacity:0}
 }
 
-/* === Layout === */
+/* Layout */
 .container {
-    padding: 80px 20px;
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
 }
 
-h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 20px;
-    max-width: 700px;
-    margin: auto;
-}
+h1 { font-size: 52px; margin-bottom: 10px; }
+p { font-size: 20px; max-width: 700px; margin: 10px auto; }
 
 .button {
-    margin-top: 30px;
-    padding: 15px 35px;
+    margin: 30px 0;
+    padding: 15px 38px;
     background: #00d4ff;
-    border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     font-size: 18px;
-    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
 }
 
-.footer {
-    margin-top: 80px;
-    opacity: 0.6;
+/* Buttons */
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 25px;
 }
+.links a {
+    padding: 10px 22px;
+    border-radius: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.tg {background:#229ED9}
+.x {background:#000}
+.buy {background:#22c55e}
+.dex {background:#0f172a;color:#38bdf8}
+.cmc {background:#0052ff}
+.mail {background:#EA4335}
+
+.footer {
+    margin-top: 60px;
+    opacity: 0.7;
+}
+.logo { width: 160px; margin-bottom: 20px; }
 </style>
 </head>
 
 <body>
 
 <div class="slideshow">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
 </div>
 
 <div class="container">
+    <img src="DEX.jpeg" class="logo">
     <h1>Solivra (SOVA)</h1>
     <p>When we climb together, we climb higher.</p>
     <p>Solivra (SOVA) is a community-driven meme token built on trust, unity and long-term vision.</p>
 
-    <button class="button">Join the Community</button>
+    <a class="button" href="https://t.me/SolivraSOVA" target="_blank">Join the Community</a>
 
-    <div style="margin-top:30px;">
-        <img src="DEX.jpeg" alt="SOVA Logo" style="width:200px;">
-    </div>
-
-    <div style="margin-top:40px;">
-        <a href="https://t.me/SolivraSOVA" target="_blank"
-           style="text-decoration:none; margin:10px; padding:12px 24px; background:#229ED9; color:white; border-radius:25px; font-weight:bold;">
-           Telegram
-        </a>
-
-        <a href="https://x.com/SovaSolivra" target="_blank"
-           style="text-decoration:none; margin:10px; padding:12px 24px; background:#000000; color:white; border-radius:25px; font-weight:bold;">
-           Twitter (X)
-        </a>
-    </div>
-
-    <div style="margin-top:25px;">
-        <a href="mailto:solivrasova@gmail.com"
-           style="text-decoration:none; margin:8px; padding:10px 22px; background:#EA4335; color:white; border-radius:20px; font-weight:bold;">
-           Gmail
-        </a>
-
-        <a href="https://pancakeswap.finance/swap?outputCurrency=0xCeA2B96Ab875F80837Ac75dD05CBb1Dd02450D95&chain=bsc"
-           target="_blank"
-           style="text-decoration:none; margin:8px; padding:10px 22px; background:#22c55e; color:white; border-radius:20px; font-weight:bold;">
-           Buy Token
-        </a>
-    </div>
-
-    <div style="margin-top:25px;">
-        <a href="https://dexscreener.com/bsc/0xcff580bfcfe2f551147baff8ce6c91a5de4000c4"
-           target="_blank"
-           style="text-decoration:none; margin:8px; padding:10px 22px; background:#0f172a; color:#38bdf8; border-radius:20px; font-weight:bold;">
-           Dexscreener
-        </a>
-
-        <a href="https://dex.coinmarketcap.com/token/bsc/0xcea2b96ab875f80837ac75dd05cbb1dd02450d95/"
-           target="_blank"
-           style="text-decoration:none; margin:8px; padding:10px 22px; background:#0052ff; color:white; border-radius:20px; font-weight:bold;">
-           CoinMarketCap
-        </a>
+    <div class="links">
+        <a class="tg" href="https://t.me/SolivraSOVA" target="_blank">Telegram</a>
+        <a class="x" href="https://x.com/SovaSolivra" target="_blank">Twitter (X)</a>
+        <a class="mail" href="mailto:solivrasova@gmail.com">Gmail</a>
+        <a class="buy" href="https://pancakeswap.finance/swap?outputCurrency=&chain=bsc&inputCurrency=0xCeA2B96Ab875F80837Ac75dD05CBb1Dd02450D95" target="_blank">Buy Token</a>
+        <a class="dex" href="https://dexscreener.com/bsc/0xcff580bfcfe2f551147baff8ce6c91a5de4000c4" target="_blank">Dexscreener</a>
+        <a class="cmc" href="https://dex.coinmarketcap.com/token/bsc/0xcea2b96ab875f80837ac75dd05cbb1dd02450d95/" target="_blank">CoinMarketCap</a>
     </div>
 
     <div class="footer">© 2025 Solivra</div>
