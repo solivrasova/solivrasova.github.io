@@ -5,25 +5,47 @@
 <title>Solivra (SOVA)</title>
 
 <style>
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
     font-family: Arial, sans-serif;
     color: white;
     text-align: center;
-    min-height: 100vh;
 
-    background-image: url('background.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-image: url('bg1.jpg');
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #0a0f2c;
+}
+
+/* Dark overlay for readability */
+.overlay {
+    background: rgba(0, 0, 0, 0.55);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
-    padding: 80px 20px;
+    max-width: 700px;
+    padding: 40px 20px;
 }
 
+/* Logo */
+.logo {
+    width: 200px;
+    margin-bottom: 25px;
+}
+
+/* Text */
 h1 {
     font-size: 48px;
     margin-bottom: 15px;
@@ -31,29 +53,14 @@ h1 {
 
 p {
     font-size: 20px;
-    max-width: 700px;
-    margin: 10px auto;
+    margin-bottom: 20px;
 }
 
-.main-btn {
-    margin-top: 30px;
-    padding: 16px 40px;
-    background: linear-gradient(135deg, #00d4ff, #4facfe);
-    border: none;
-    border-radius: 30px;
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-}
-
-.links {
-    margin-top: 40px;
-}
-
-.links a {
+/* Buttons */
+.button {
     display: inline-block;
     margin: 10px;
-    padding: 12px 26px;
+    padding: 14px 28px;
     border-radius: 25px;
     font-weight: bold;
     text-decoration: none;
@@ -61,39 +68,43 @@ p {
 }
 
 .telegram { background: #229ED9; }
-.twitter { background: #000; }
-.gmail { background: #EA4335; }
-.buy { background: #22c55e; }
-.dex { background: #0f172a; color: #38bdf8; }
-.cmc { background: #0052ff; }
+.twitter  { background: #000000; }
+.buy      { background: #22c55e; }
+.dex      { background: #0f172a; }
+.cmc      { background: #0052ff; }
+.gmail    { background: #EA4335; }
 
 .footer {
-    margin-top: 80px;
+    margin-top: 30px;
     opacity: 0.7;
+    font-size: 14px;
 }
 </style>
 </head>
 
 <body>
-
+<div class="overlay">
 <div class="container">
-    <h1>Solivra (SOVA)</h1>
-    <p>When we climb together, we climb higher.</p>
-    <p>Solivra (SOVA) is a community-driven meme token built on trust, unity and long-term vision.</p>
 
-    <button class="main-btn">Join the Community</button>
+<img src="DEX.jpeg" class="logo" alt="SOVA Logo">
 
-    <div class="links">
-        <a class="telegram" href="https://t.me/SolivraSOVA" target="_blank">Telegram</a>
-        <a class="twitter" href="https://x.com/SovaSolivra" target="_blank">Twitter (X)</a>
-        <a class="gmail" href="mailto:solivrasova@gmail.com">Gmail</a>
-        <a class="buy" href="https://pancakeswap.finance/swap?outputCurrency=&chain=bsc&inputCurrency=0xCeA2B96Ab875F80837Ac75dD05CBb1Dd02450D95" target="_blank">Buy Token</a>
-        <a class="dex" href="https://dexscreener.com/bsc/0xcff580bfcfe2f551147baff8ce6c91a5de4000c4" target="_blank">Dexscreener</a>
-        <a class="cmc" href="https://dex.coinmarketcap.com/token/bsc/0xcea2b96ab875f80837ac75dd05cbb1dd02450d95/" target="_blank">CoinMarketCap</a>
-    </div>
+<h1>Solivra (SOVA)</h1>
 
-    <div class="footer">© 2025 Solivra</div>
+<p>When we climb together, we climb higher.</p>
+
+<p>Solivra (SOVA) is a community-driven meme token built on trust, unity and long-term vision.</p>
+
+<a href="https://t.me/SolivraSOVA" class="button telegram" target="_blank">Telegram</a>
+<a href="https://x.com/SovaSolivra" class="button twitter" target="_blank">Twitter (X)</a>
+<a href="mailto:solivrasova@gmail.com" class="button gmail">Gmail</a>
+<br>
+<a href="https://pancakeswap.finance/swap?outputCurrency=&chain=bsc&inputCurrency=0xCeA2B96Ab875F80837Ac75dD05CBb1Dd02450D95" class="button buy" target="_blank">Buy Token</a>
+<a href="https://dexscreener.com/bsc/0xcff580bfcfe2f551147baff8ce6c91a5de4000c4" class="button dex" target="_blank">Dexscreener</a>
+<a href="https://dex.coinmarketcap.com/token/bsc/0xcea2b96ab875f80837ac75dd05cbb1dd02450d95/" class="button cmc" target="_blank">CoinMarketCap</a>
+
+<div class="footer">© 2025 Solivra</div>
+
 </div>
-
+</div>
 </body>
 </html>
