@@ -1,110 +1,582 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Solivra (SOVA)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solivra (SOVA) - ارز دیجیتال نسل آینده</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
+        /* اسکرول اسنپ عمودی */
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
 
-    background-image: url('bg1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Dark overlay for readability */
-.overlay {
-    background: rgba(0, 0, 0, 0.55);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* انیمیشن پس زمینه */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.container {
-    max-width: 700px;
-    padding: 40px 20px;
-}
+        /* بخش اول - صفحه اصلی */
+        #home {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
 
-/* Logo */
-.logo {
-    width: 200px;
-    margin-bottom: 25px;
-}
+        /* بخش دوم - درباره توکن */
+        #about {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
-/* Text */
-h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
-}
+        /* بخش سوم - ویژگی‌ها */
+        #features {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
 
-p {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
+        /* بخش چهارم - ارتباط و خرید */
+        #contact {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
 
-/* Buttons */
-.button {
-    display: inline-block;
-    margin: 10px;
-    padding: 14px 28px;
-    border-radius: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-}
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-.telegram { background: #229ED9; }
-.twitter  { background: #000000; }
-.buy      { background: #22c55e; }
-.dex      { background: #0f172a; }
-.cmc      { background: #0052ff; }
-.gmail    { background: #EA4335; }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
-.footer {
-    margin-top: 30px;
-    opacity: 0.7;
-    font-size: 14px;
-}
-</style>
+        .token-symbol {
+            font-size: 2rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .contract-address {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contract-address:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        /* کارت‌های ویژگی‌ها */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* شبکه‌های اجتماعی */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        /* دکمه اتصال والت */
+        .connect-wallet {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
+            margin: 1rem 0;
+        }
+
+        .connect-wallet:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+
+        /* آمار توکن */
+        .token-stats {
+            display: flex;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* دکمه اسکرول به پایین */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+
+        /* دکمه خرید */
+        .buy-button {
+            background: #ffd700;
+            color: #333;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 1rem 0;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* نقشه راه */
+        .roadmap {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .roadmap-item {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            margin: 0 0.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .roadmap-item.completed {
+            background: rgba(0,255,0,0.2);
+        }
+
+        /* تایمر */
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .token-stats { flex-direction: column; }
+            .roadmap { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+    <!-- فونت وزیرمتن -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <!-- آیکون فونت awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
-<div class="overlay">
-<div class="container">
+    <div class="container">
+        <!-- صفحه اول - صفحه اصلی -->
+        <section id="home">
+            <div class="token-symbol">
+                <i class="fas fa-coins"></i> Solivra (SOVA)
+            </div>
+            <h1>آینده مالی غیرمتمرکز</h1>
+            <p style="font-size: 1.3rem; max-width: 600px; text-align: center; margin-bottom: 2rem;">
+                توکن SOVA، نسل جدید ارزهای دیجیتال با تکنولوژی بلاکچین پیشرفته
+            </p>
+            
+            <div class="contract-address" onclick="copyContract()">
+                <i class="fas fa-copy"></i> آدرس قرارداد: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e
+            </div>
 
-<img src="DEX.jpeg" class="logo" alt="SOVA Logo">
+            <div class="token-stats">
+                <div class="stat-item">
+                    <div class="stat-number">1B</div>
+                    <div class="stat-label">عرضه کل</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500M</div>
+                    <div class="stat-label">در گردش</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">دارندگان</div>
+                </div>
+            </div>
 
-<h1>Solivra (SOVA)</h1>
+            <button class="connect-wallet" onclick="connectWallet()">
+                <i class="fas fa-wallet"></i> اتصال والت
+            </button>
 
-<p>When we climb together, we climb higher.</p>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+            </div>
 
-<p>Solivra (SOVA) is a community-driven meme token built on trust, unity and long-term vision.</p>
+            <div class="scroll-down" onclick="scrollToSection('about')">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
 
-<a href="https://t.me/SolivraSOVA" class="button telegram" target="_blank">Telegram</a>
-<a href="https://x.com/SovaSolivra" class="button twitter" target="_blank">Twitter (X)</a>
-<a href="mailto:solivrasova@gmail.com" class="button gmail">Gmail</a>
-<br>
-<a href="https://pancakeswap.finance/swap?outputCurrency=&chain=bsc&inputCurrency=0xCeA2B96Ab875F80837Ac75dD05CBb1Dd02450D95" class="button buy" target="_blank">Buy Token</a>
-<a href="https://dexscreener.com/bsc/0xcff580bfcfe2f551147baff8ce6c91a5de4000c4" class="button dex" target="_blank">Dexscreener</a>
-<a href="https://dex.coinmarketcap.com/token/bsc/0xcea2b96ab875f80837ac75dd05cbb1dd02450d95/" class="button cmc" target="_blank">CoinMarketCap</a>
+        <!-- صفحه دوم - درباره توکن -->
+        <section id="about">
+            <h2>درباره Solivra (SOVA)</h2>
+            
+            <div style="max-width: 800px; text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem;">
+                    Solivra یک پلتفرم بلاکچین نسل سوم با قابلیت قراردادهای هوشمند پیشرفته و مقیاس‌پذیری بالا است. 
+                    توکن SOVA قلب این اکوسیستم است که برای پرداخت هزینه تراکنش‌ها، شرکت در حاکمیت و استیکینگ استفاده می‌شود.
+                </p>
+            </div>
 
-<div class="footer">© 2025 Solivra</div>
+            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>تراکنش‌های سریع</h3>
+                    <p>با زمان تایید کمتر از ۳ ثانیه</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>امنیت بالا</h3>
+                    <p>تضمین شده با پروتکل Proof of Stake</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>قابلیت همکاری</h3>
+                    <p>اتصال به سایر بلاکچین‌ها</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>کارمزد پایین</h3>
+                    <p>کمتر از ۰.۰۰۱ دلار برای هر تراکنش</p>
+                </div>
+            </div>
 
-</div>
-</div>
+            <div class="scroll-down" onclick="scrollToSection('features')">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- صفحه سوم - ویژگی‌ها و نقشه راه -->
+        <section id="features">
+            <h2>نقشه راه و ویژگی‌ها</h2>
+
+            <div class="roadmap">
+                <div class="roadmap-item completed">
+                    <i class="fas fa-check-circle" style="color: #4caf50; font-size: 2rem;"></i>
+                    <h4>فاز ۱</h4>
+                    <p>راه‌اندازی توکن</p>
+                </div>
+                <div class="roadmap-item completed">
+                    <i class="fas fa-check-circle" style="color: #4caf50; font-size: 2rem;"></i>
+                    <h4>فاز ۲</h4>
+                    <p>لیستینگ در صرافی‌ها</p>
+                </div>
+                <div class="roadmap-item">
+                    <i class="fas fa-hourglass-half" style="color: #ffd700; font-size: 2rem;"></i>
+                    <h4>فاز ۳</h4>
+                    <p>راه‌اندازی استیکینگ</p>
+                </div>
+                <div class="roadmap-item">
+                    <i class="fas fa-hourglass-half" style="color: #ffd700; font-size: 2rem;"></i>
+                    <h4>فاز ۴</h4>
+                    <p>بازی‌های بلاکچینی</p>
+                </div>
+            </div>
+
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">۰۰</div>
+                    <div>روز</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">۰۰</div>
+                    <div>ساعت</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">۰۰</div>
+                    <div>دقیقه</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">۰۰</div>
+                    <div>ثانیه</div>
+                </div>
+            </div>
+            <p style="margin-bottom: 2rem;">تا راه‌اندازی استیکینگ</p>
+
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fas fa-chart-line"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-file-alt"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-lock"></i></a>
+            </div>
+
+            <div class="scroll-down" onclick="scrollToSection('contact')">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- صفحه چهارم - خرید و ارتباط -->
+        <section id="contact">
+            <h2>خرید SOVA و ارتباط با ما</h2>
+
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0;">
+                <a href="#" class="buy-button">
+                    <i class="fas fa-shopping-cart"></i> خرید از Uniswap
+                </a>
+                <a href="#" class="buy-button" style="background: #627eea; color: white;">
+                    <i class="fas fa-exchange-alt"></i> خرید از PancakeSwap
+                </a>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <h3>شبکه‌های اجتماعی و انجمن</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-reddit"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 20px; max-width: 500px; width: 100%;">
+                <h3>عضویت در خبرنامه</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <input type="email" placeholder="ایمیل خود را وارد کنید" style="flex: 1; padding: 1rem; border: none; border-radius: 50px; background: rgba(255,255,255,0.2); color: white; backdrop-filter: blur(10px);">
+                    <button style="padding: 1rem 2rem; background: #ffd700; border: none; border-radius: 50px; color: #333; font-weight: bold; cursor: pointer;">عضویت</button>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; text-align: center;">
+                <i class="fas fa-envelope"></i> support@solivra.io | 
+                <i class="fas fa-globe"></i> www.solivra.io
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // کپی کردن آدرس قرارداد
+        function copyContract() {
+            const contractAddress = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                alert("آدرس قرارداد کپی شد: " + contractAddress);
+            }).catch(() => {
+                alert("خطا در کپی کردن آدرس");
+            });
+        }
+
+        // اتصال والت (شبیه‌سازی)
+        function connectWallet() {
+            alert("اتصال به کیف پول متامسک... (این یک دمو است)");
+        }
+
+        // اسکرول به بخش مشخص
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // شمارش معکوس
+        function updateCountdown() {
+            const eventDate = new Date();
+            eventDate.setDate(eventDate.getDate() + 15); // 15 روز بعد
+            
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '۰');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '۰');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '۰');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '۰');
+        }
+
+        // به‌روزرسانی هر ثانیه
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // تشخیص اسکرول و تغییر رنگ پس‌زمینه
+        const container = document.querySelector('.container');
+        const sections = document.querySelectorAll('section');
+
+        container.addEventListener('scroll', () => {
+            const scrollPosition = container.scrollTop;
+            const windowHeight = window.innerHeight;
+            const currentSection = Math.floor(scrollPosition / windowHeight);
+            
+            // تغییر opacity دکمه‌های اسکرول
+            document.querySelectorAll('.scroll-down').forEach((btn, index) => {
+                if (index === currentSection && currentSection < sections.length - 1) {
+                    btn.style.opacity = '1';
+                } else {
+                    btn.style.opacity = '0.5';
+                }
+            });
+        });
+
+        // اضافه کردن کلاس به لینک‌های شبکه اجتماعی برای باز شدن در تب جدید
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+
+        // جلوگیری از اسکرول پیش‌فرض صفحه
+        document.body.style.overflow = 'hidden';
+    </script>
 </body>
 </html>
